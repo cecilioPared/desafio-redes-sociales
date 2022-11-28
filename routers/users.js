@@ -11,7 +11,7 @@ router.post("/", async (req, res, next) => {
 
     console.log("email", email);
     const users = UserController.get();
-    console.log("usuarios:", users);
+    //console.log("usuarios:", users);
     const user = await UserModel.findOne({ email });
     console.log("usuario encontrado:", user);
     if (user) {

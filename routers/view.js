@@ -11,7 +11,7 @@ router.get("/sign-in", (req, res) => {
   let data = req.signedCookies.data;
   if (data) {
     data = JSON.parse(data);
-  }
+  }  
   res.clearCookie("data").render("sign-in", data);
 });
 
@@ -39,6 +39,10 @@ router.get("/sign-out", (req, res, next) => {
     }
     res.redirect("/sign-in");
   });
+});
+
+router.get('/error-login', (req, res) => {  
+  res.render("error-login");
 });
 
 export default router;

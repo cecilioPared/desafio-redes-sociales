@@ -3,14 +3,17 @@ import passport from "passport";
 
 const router = Router();
 
-router.post("/sign-in", passport.authenticate("sign-in"), (req, res, next) => {
-  const { user } = req;
-  if (!req.isAuthenticated()) {
-    res.status(401).json({ message: "Email or password is invalid" });
-    return next();
+router.post(
+  "/sign-in",
+  passport.authenticate("sign-in", {
+    successRedirect: "/private",
+    failureRedirect: "/error-login",
+    failureMessage: true    
+  }),
+  (req, res) => {    
+    res.redirect("/private");
   }
-  res.redirect("/private");
-});
+);
 
 router.post("/sign-out", (req, res, next) => {
   const { user } = req;
